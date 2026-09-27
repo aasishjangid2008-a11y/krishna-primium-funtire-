@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Krishna Premium Furniture</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#fff7fb;
+color:#24151e;
+overflow-x:hidden;
+transition:.4s
+}
+
+:root{
+--pink:#ff4f9a;
+--pink2:#ff9fca;
+--pink3:#ffe2ef;
+--white:#fff;
+--dark:#24151e;
+--gray:#75646d;
+--glass:rgba(255,255,255,.58);
+--border:rgba(255,79,154,.22);
+--shadow:0 20px 60px rgba(255,79,154,.14)
+}
+
+body.dark{
+--white:#151014;
+--dark:#fff;
+--gray:#c4b7be;
+--glass:rgba(35,25,31,.72);
+background:#120c10;
+color:#fff
+}
+
+/* LOADER */
+#loader{
+position:fixed;inset:0;background:#fff;
+display:flex;align-items:center;justify-content:center;
+z-index:99999;transition:1s
+}
+.loaderBox{text-align:center}
+.loaderLogo{
+width:90px;height:90px;border-radius:50%;
+border:4px solid var(--pink);
+border-top-color:transparent;
+display:flex;align-items:center;justify-content:center;
+font-size:38px;
+animation:spin 1s linear infinite
+}
+.loaderBox h2{
+color:var(--pink);margin-top:20px;
+letter-spacing:4px
+}
+.loaderBar{
+height:4px;width:180px;
+background:#ffd5e7;margin:15px auto;
+overflow:hidden;border-radius:10px
+}
+.loaderBar:after{
+content:"";display:block;height:100%;width:50%;
+background:var(--pink);
+animation:loader 1s infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes loader{from{transform:translateX(-100%)}
+to{transform:translateX(300%)}}
+
+/* ANIMATED BACKGROUND */
+.bgAnimation{
+position:fixed;inset:0;
+overflow:hidden;pointer-events:none;
+z-index:-1
+}
+.blob{
+position:absolute;border-radius:50%;
+filter:blur(60px);
+opacity:.35;
+animation:blobMove 12s infinite alternate
+}
+.blob1{
+width:400px;height:400px;
+background:#ff8fc1;
+top:-100px;left:-100px
+}
+.blob2{
+width:500px;height:500px;
+background:#ffd3e6;
+right:-150px;top:30%
+}
+.blob3{
+width:350px;height:350px;
+background:#ffb1d3;
+bottom:-100px;left:30%;
+animation-delay:3s
+}
+@keyframes blobMove{
+0%{transform:translate(0,0) scale(1)}
+50%{transform:translate(100px,50px) scale(1.15)}
+100%{transform:translate(-60px,100px) scale(.9)}
+}
+
+/* NAVBAR */
+.navbar{
+position:fixed;top:15px;left:4%;right:4%;
+height:70px;
+display:flex;align-items:center;
+justify-content:space-between;
+padding:0 25px;
+background:var(--glass);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:22px;
+box-shadow:var(--shadow);
+z-index:5000
+}
+.logo{
+font-size:23px;font-weight:900;
+color:var(--pink)
+}
+.logo small{
+display:block;font-size:8px;
+letter-spacing:4px;color:var(--dark)
+}
+.navLinks{
+display:flex;gap:25px;
+list-style:none
+}
+.navLinks a{
+text-decoration:none;
+color:var(--dark);
+font-size:14px;
+font-weight:600;
+transition:.3s
+}
+.navLinks a:hover{color:var(--pink)}
+.navActions{
+display:flex;gap:8px
+}
+.navBtn{
+width:42px;height:42px;
+border-radius:50%;
+border:1px solid var(--border);
+background:rgba(255,255,255,.4);
+color:var(--dark);
+cursor:pointer;font-size:17px;
+position:relative
+}
+.cartCount{
+position:absolute;
+right:-3px;top:-3px;
+width:19px;height:19px;
+border-radius:50%;
+background:var(--pink);
+color:#fff;
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center
+}
+.menuBtn{display:none}
+
+/* HERO */
+.hero{
+min-height:100vh;
+padding:150px 7% 80px;
+display:flex;
+align-items:center;
+position:relative
+}
+.heroContent{
+width:55%;
+z-index:2
+}
+.badge{
+display:inline-block;
+padding:9px 18px;
+border-radius:50px;
+background:rgba(255,79,154,.1);
+border:1px solid var(--border);
+color:var(--pink);
+font-size:11px;
+letter-spacing:2px;
+font-weight:bold;
+margin-bottom:20px
+}
+.hero h1{
+font-size:clamp(48px,7vw,90px);
+line-height:.95;
+letter-spacing:-5px;
+color:var(--dark)
+}
+.hero h1 span{
+color:var(--pink);
+text-shadow:0 10px 30px rgba(255,79,154,.2)
+}
+.heroText{
+max-width:600px;
+line-height:1.8;
+color:var(--gray);
+margin-top:25px
+}
+.heroButtons{
+display:flex;gap:12px;
+margin-top:30px
+}
+.btn{
+border:0;
+padding:15px 24px;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+text-decoration:none;
+display:inline-block
+}
+.btnPink{
+background:linear-gradient(135deg,#ff4f9a,#ff86b9);
+color:#fff;
+box-shadow:0 12px 30px rgba(255,79,154,.3)
+}
+.btnPink:hover{
+transform:translateY(-4px);
+box-shadow:0 18px 40px rgba(255,79,154,.4)
+}
+.btnWhite{
+background:var(--glass);
+color:var(--dark);
+border:1px solid var(--border)
+}
+.btnWhite:hover{
+transform:translateY(-4px);
+border-color:var(--pink)
+}
+
+/* HERO FURNITURE */
+.heroFurniture{
+position:absolute;
+right:6%;
+width:40%;
+height:500px;
+display:flex;
+align-items:center;
+justify-content:center;
+perspective:1000px
+}
+.sofa3d{
+width:390px;height:220px;
+background:linear-gradient(145deg,#ffafd0,#ff4f9a);
+border-radius:60px 60px 25px 25px;
+position:relative;
+box-shadow:
+30px 35px 50px rgba(255,79,154,.25),
+inset 0 10px 20px rgba(255,255,255,.4);
+transform:rotateY(-18deg) rotateX(5deg);
+animation:sofaFloat 4s ease-in-out infinite
+}
+.sofa3d:before{
+content:"";
+position:absolute;
+left:35px;right:35px;top:-75px;
+height:105px;
+background:linear-gradient(145deg,#ffd3e5,#ff78ad);
+border-radius:50px 50px 20px 20px
+}
+.sofa3d:after{
+content:"";
+position:absolute;
+width:330px;height:20px;
+left:30px;bottom:-35px;
+background:#b93270;
+border-radius:50%;
+filter:blur(5px)
+}
+.cushion{
+position:absolute;
+width:110px;height:75px;
+background:#fff;
+border-radius:25px;
+top:-50px;
+left:70px;
+box-shadow:0 10px 20px rgba(0,0,0,.1)
+}
+.cushion2{
+left:auto;right:70px
+}
+@keyframes sofaFloat{
+0%,100%{transform:rotateY(-18deg) translateY(0)}
+50%{transform:rotateY(-12deg) translateY(-20px)}
+}
+
+/* SECTION */
+section{padding:90px 7%}
+.sectionHead{text-align:center;margin-bottom:45px}
+.sectionHead small{
+color:var(--pink);
+letter-spacing:3px
+}
+.sectionHead h2{
+font-size:clamp(35px,5vw,60px);
+margin:10px 0;
+color:var(--dark)
+}
+.sectionHead p{color:var(--gray)}
+
+/* CATEGORY */
+.categories{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px
+}
+.category{
+height:210px;
+position:relative;
+overflow:hidden;
+border-radius:25px;
+background:var(--glass);
+backdrop-filter:blur(15px);
+border:1px solid var(--border);
+box-shadow:var(--shadow);
+cursor:pointer;
+transition:.4s
+}
+.category:hover{
+transform:translateY(-10px) scale(1.02)
+}
+.categoryIcon{
+font-size:70px;
+position:absolute;
+top:35px;left:35px;
+filter:drop-shadow(0 15px 15px rgba(255,79,154,.25))
+}
+.categoryInfo{
+position:absolute;
+bottom:25px;
+left:28px
+}
+.categoryInfo h3{font-size:22px}
+.categoryInfo p{
+font-size:12px;
+color:var(--gray);
+margin-top:5px
+}
+
+/* TOOLBAR */
+.toolbar{
+display:flex;
+justify-content:space-between;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:30px
+}
+.searchBox{
+width:300px;
+padding:14px 18px;
+border-radius:12px;
+border:1px solid var(--border);
+background:var(--glass);
+color:var(--dark);
+outline:none
+}
+.priceBox{
+display:flex;
+align-items:center;
+gap:10px;
+color:var(--dark)
+}
+.priceBox input{accent-color:var(--pink)}
+.filters{
+display:flex;
+gap:8px;
+flex-wrap:wrap
+}
+.filter{
+padding:10px 17px;
+border-radius:30px;
+border:1px solid var(--border);
+background:var(--glass);
+color:var(--dark);
+cursor:pointer
+}
+.filter.active,.filter:hover{
+background:var(--pink);
+color:#fff
+}
+
+/* PRODUCTS */
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px
+}
+.product{
+background:var(--glass);
+backdrop-filter:blur(18px);
+border:1px solid var(--border);
+border-radius:20px;
+overflow:hidden;
+box-shadow:var(--shadow);
+transition:.4s;
+position:relative
+}
+.product:hover{
+transform:translateY(-9px)
+}
+.productVisual{
+height:240px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(145deg,#fff,#ffe5f0);
+position:relative;
+overflow:hidden
+}
+body.dark .productVisual{
+background:linear-gradient(145deg,#2b1a23,#170f13)
+}
+.furnitureEmoji{
+font-size:105px;
+transition:.5s;
+filter:drop-shadow(0 20px 15px rgba(255,79,154,.25))
+}
+.product:hover .furnitureEmoji{
+transform:scale(1.15) rotate(-3deg)
+}
+.wishlist{
+position:absolute;
+right:12px;
+top:12px;
+width:38px;height:38px;
+border-radius:50%;
+border:1px solid var(--border);
+background:rgba(255,255,255,.7);
+cursor:pointer
+}
+.wishlist.liked{color:#ff2c7d}
+.productTag{
+position:absolute;
+left:12px;top:12px;
+padding:6px 10px;
+border-radius:20px;
+background:var(--pink);
+color:#fff;
+font-size:10px
+}
+.productInfo{padding:20px}
+.productInfo small{
+color:var(--pink);
+font-weight:bold
+}
+.productInfo h3{
+margin:8px 0;
+color:var(--dark)
+}
+.stars{color:#ffb400}
+.review{
+font-size:11px;
+color:var(--gray);
+margin-left:5px
+}
+.price{
+font-size:20px;
+font-weight:bold;
+color:var(--pink);
+margin:10px 0
+}
+.oldPrice{
+font-size:12px;
+color:#999;
+text-decoration:line-through;
+margin-left:5px
+}
+.productButtons{
+display:flex;
+gap:8px
+}
+.addCart{
+flex:1;
+padding:11px;
+border:0;
+border-radius:10px;
+background:var(--pink);
+color:white;
+cursor:pointer
+}
+.details{
+padding:11px;
+border:1px solid var(--border);
+background:transparent;
+color:var(--dark);
+border-radius:10px;
+cursor:pointer
+}
+
+/* OFFER */
+.offer{
+margin:20px 7%;
+padding:70px;
+border-radius:35px;
+position:relative;
+overflow:hidden;
+background:linear-gradient(120deg,#ff4f9a,#ff9fca);
+color:#fff;
+box-shadow:0 30px 80px rgba(255,79,154,.3)
+}
+.offer h2{
+font-size:clamp(38px,5vw,65px);
+max-width:650px
+}
+.offer p{
+margin:15px 0 25px;
+max-width:550px;
+line-height:1.7
+}
+.offerCircle{
+position:absolute;
+width:350px;height:350px;
+border:2px solid rgba(255,255,255,.25);
+border-radius:50%;
+right:-80px;top:-20px;
+animation:rotateCircle 10s linear infinite
+}
+@keyframes rotateCircle{to{transform:rotate(360deg)}}
+
+/* FEATURES */
+.features{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px
+}
+.feature{
+padding:30px 20px;
+text-align:center;
+background:var(--glass);
+backdrop-filter:blur(15px);
+border:1px solid var(--border);
+border-radius:20px;
+transition:.4s
+}
+.feature:hover{transform:translateY(-8px)}
+.featureIcon{
+font-size:40px;
+margin-bottom:15px
+}
+.feature h3{color:var(--dark)}
+.feature p{
+font-size:13px;
+line-height:1.7;
+color:var(--gray);
+margin-top:8px
+}
+
+/* ABOUT */
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center
+}
+.aboutVisual{
+height:470px;
+border-radius:35px;
+background:linear-gradient(145deg,#fff,#ffddeb);
+border:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden
+}
+.aboutVisual span{
+font-size:190px;
+animation:sofaFloat 4s infinite
+}
+.aboutText h2{
+font-size:50px;
+color:var(--dark);
+margin:10px 0 20px
+}
+.aboutText p{
+line-height:1.9;
+color:var(--gray)
+}
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:30px
+}
+.stat{
+border-left:3px solid var(--pink);
+padding-left:15px
+}
+.stat strong{
+font-size:27px;
+color:var(--pink);
+display:block
+}
+.stat span{
+font-size:11px;
+color:var(--gray)
+}
+
+/* CONTACT */
+.contact{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px
+}
+.contactBox,.formBox{
+padding:35px;
+background:var(--glass);
+backdrop-filter:blur(15px);
+border:1px solid var(--border);
+border-radius:25px
+}
+.contactBox h3,.formBox h3{
+font-size:27px;
+color:var(--dark);
+margin-bottom:20px
+}
+.contactItem{
+display:flex;
+gap:15px;
+margin:22px 0;
+color:var(--gray)
+}
+.contactItem span{font-size:25px}
+.formGroup{margin-bottom:15px}
+.formGroup input,.formGroup textarea{
+width:100%;
+padding:15px;
+border:1px solid var(--border);
+background:rgba(255,255,255,.4);
+border-radius:12px;
+outline:none;
+color:var(--dark)
+}
+.formGroup textarea{
+height:130px;
+resize:none
+}
+
+/* CART */
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(20,10,15,.45);
+backdrop-filter:blur(5px);
+z-index:6000;
+display:none
+}
+.overlay.show{display:block}
+.cartPanel{
+position:fixed;
+right:-460px;
+top:0;
+height:100vh;
+width:430px;
+max-width:95%;
+background:var(--white);
+z-index:7000;
+box-shadow:-20px 0 60px rgba(0,0,0,.2);
+padding:25px;
+transition:.45s;
+display:flex;
+flex-direction:column
+}
+.cartPanel.open{right:0}
+.cartHeader{
+display:flex;
+justify-content:space-between;
+padding-bottom:20px;
+border-bottom:1px solid var(--border);
+color:var(--dark)
+}
+.close{
+border:0;background:none;
+font-size:27px;
+color:var(--dark);
+cursor:pointer
+}
+.cartItems{
+flex:1;
+overflow:auto
+}
+.cartItem{
+display:flex;
+gap:12px;
+padding:15px 0;
+border-bottom:1px solid var(--border)
+}
+.cartItemIcon{
+width:65px;height:65px;
+border-radius:12px;
+background:#ffe4ef;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px
+}
+.cartItem h4{
+color:var(--dark);
+font-size:14px
+}
+.qty{
+display:flex;
+gap:8px;
+align-items:center;
+margin-top:7px
+}
+.qty button{
+width:25px;height:25px;
+border:1px solid var(--border);
+background:var(--glass);
+cursor:pointer
+}
+.remove{
+color:#e23d6f;
+font-size:11px;
+cursor:pointer;
+margin-left:10px
+}
+.cartFooter{
+padding-top:20px;
+border-top:1px solid var(--border)
+}
+.total{
+display:flex;
+justify-content:space-between;
+font-size:21px;
+color:var(--dark);
+margin-bottom:15px
+}
+
+/* PRODUCT MODAL */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(20,10,15,.65);
+backdrop-filter:blur(10px);
+z-index:8000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px
+}
+.modal.show{display:flex}
+.modalBox{
+width:850px;
+max-width:100%;
+background:var(--white);
+border:1px solid var(--border);
+border-radius:25px;
+padding:30px;
+position:relative;
+color:var(--dark)
+}
+.modalClose{
+position:absolute;
+right:20px;top:15px;
+border:0;background:none;
+font-size:28px;
+color:var(--dark);
+cursor:pointer
+}
+.modalGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px
+}
+.modalVisual{
+height:350px;
+border-radius:20px;
+background:linear-gradient(145deg,#fff,#ffe0ed);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:160px;
+perspective:800px
+}
+.rotateFurniture{
+animation:rotateFurniture 5s linear infinite
+}
+@keyframes rotateFurniture{
+0%{transform:rotateY(0)}
+50%{transform:rotateY(180deg)}
+100%{transform:rotateY(360deg)}
+}
+.modalBox h2{
+font-size:38px;
+margin:15px 0
+}
+.modalDesc{
+color:var(--gray);
+line-height:1.8
+}
+.modalPrice{
+font-size:27px;
+color:var(--pink);
+font-weight:bold;
+margin:15px 0
+}
+.colorTitle{
+font-size:13px;
+font-weight:bold;
+margin:20px 0 10px
+}
+.colors{
+display:flex;
+gap:10px
+}
+.color{
+width:32px;height:32px;
+border-radius:50%;
+border:3px solid #fff;
+box-shadow:0 0 0 1px #ccc;
+cursor:pointer
+}
+.color.active{
+box-shadow:0 0 0 2px var(--pink)
+}
+
+/* CHECKOUT */
+.checkout{
+position:fixed;
+inset:0;
+background:rgba(20,10,15,.65);
+backdrop-filter:blur(10px);
+z-index:9000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px
+}
+.checkout.show{display:flex}
+.checkoutBox{
+width:1000px;
+max-width:100%;
+max-height:90vh;
+overflow:auto;
+background:var(--white);
+border-radius:25px;
+padding:30px;
+color:var(--dark)
+}
+.checkoutGrid{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:30px
+}
+.checkoutBox h2{
+font-size:32px;
+margin-bottom:20px
+}
+.checkoutSummary{
+padding:25px;
+border-radius:20px;
+background:var(--pink3)
+}
+.summaryItem{
+display:flex;
+justify-content:space-between;
+padding:10px 0;
+border-bottom:1px solid rgba(255,79,154,.2)
+}
+.payment{
+margin-top:20px;
+display:grid;
+gap:10px
+}
+.payment label{
+border:1px solid var(--border);
+padding:13px;
+border-radius:10px;
+cursor:pointer
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+right:25px;
+bottom:25px;
+width:60px;height:60px;
+border-radius:50%;
+background:#25d366;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:29px;
+text-decoration:none;
+z-index:5500;
+box-shadow:0 12px 30px rgba(37,211,102,.3);
+animation:whatsapp 2s infinite
+}
+@keyframes whatsapp{
+50%{transform:scale(1.08)}
+}
+
+/* TOAST */
+.toast{
+position:fixed;
+left:50%;
+bottom:25px;
+transform:translate(-50%,100px);
+background:#24151e;
+color:#fff;
+padding:14px 24px;
+border-radius:50px;
+z-index:99999;
+transition:.4s
+}
+.toast.show{transform:translate(-50%,0)}
+
+/* SCROLL ANIMATION */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s
+}
+.reveal.visible{
+opacity:1;
+transform:translateY(0)
+}
+
+/* FOOTER */
+footer{
+padding:60px 7% 25px;
+background:#24151e;
+color:#fff
+}
+.footerGrid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:30px
+}
+footer .logo{color:#ff8cba}
+footer h3{margin-bottom:15px}
+footer a,footer p{
+color:#d7c5ce;
+font-size:13px;
+line-height:2;
+text-decoration:none
+}
+.copyright{
+border-top:1px solid rgba(255,255,255,.1);
+margin-top:40px;
+padding-top:20px;
+color:#aa98a1;
+font-size:11px;
+display:flex;
+justify-content:space-between
+}
+
+/* MOBILE */
+@media(max-width:1050px){
+.navLinks{display:none}
+.menuBtn{display:block}
+.heroContent{width:100%}
+.heroFurniture{opacity:.22;right:-100px}
+.products{grid-template-columns:repeat(2,1fr)}
+.categories,.features{grid-template-columns:repeat(2,1fr)}
+.about,.contact{grid-template-columns:1fr}
+.footerGrid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:650px){
+.navbar{left:2%;right:2%;padding:0 13px}
+.hero{
+padding:140px 5% 70px
+}
+.hero h1{
+font-size:52px;
+letter-spacing:-3px
+}
+.heroFurniture{display:none}
+.heroButtons{flex-direction:column}
+.heroButtons .btn{text-align:center}
+section{padding:70px 5%}
+.categories,.features,.products{
+grid-template-columns:1fr
+}
+.toolbar{display:block}
+.searchBox{width:100%;margin-bottom:12px}
+.priceBox{margin-bottom:12px}
+.offer{
+margin:10px 5%;
+padding:40px 25px
+}
+.offerCircle{opacity:.4}
+.stats{grid-template-columns:1fr}
+.modalGrid,.checkoutGrid{
+grid-template-columns:1fr
+}
+.modalVisual{height:250px;font-size:120px}
+.aboutText h2{font-size:38px}
+.contactBox,.formBox{padding:25px}
+.footerGrid{grid-template-columns:1fr}
+.copyright{
+flex-direction:column;
+gap:10px
+}
+}
+
+/* MOBILE MENU */
+.mobileMenu{
+position:fixed;
+top:95px;
+left:4%;
+right:4%;
+background:var(--white);
+border:1px solid var(--border);
+border-radius:18px;
+padding:20px;
+z-index:4999;
+display:none;
+box-shadow:var(--shadow)
+}
+.mobileMenu.show{display:block}
+.mobileMenu a{
+display:block;
+padding:13px;
+color:var(--dark);
+text-decoration:none;
+border-bottom:1px solid var(--border)
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bgAnimation">
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+<div class="loaderBox">
+<div class="loaderLogo">♛</div>
+<h2>KRISHNA</h2>
+<div class="loaderBar"></div>
+<p>PREMIUM FURNITURE</p>
+</div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="logo">
+KRISHNA
+<small>PREMIUM FURNITURE</small>
+</div>
+
+<ul class="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#categories">Categories</a></li>
+<li><a href="#products">Collection</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<div class="navActions">
+<button class="navBtn" onclick="focusSearch()">⌕</button>
+
+<button class="navBtn" onclick="toggleTheme()">☾</button>
+
+<button class="navBtn" onclick="openCart()">
+🛒
+<span class="cartCount" id="cartCount">0</span>
+</button>
+
+<button class="navBtn menuBtn" onclick="toggleMobileMenu()">☰</button>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobileMenu" id="mobileMenu">
+<a href="#home" onclick="toggleMobileMenu()">Home</a>
+<a href="#categories" onclick="toggleMobileMenu()">Categories</a>
+<a href="#products" onclick="toggleMobileMenu()">Collection</a>
+<a href="#about" onclick="toggleMobileMenu()">About</a>
+<a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+<div class="heroContent reveal">
+
+<div class="badge">
+✦ PREMIUM COLLECTION 2026
+</div>
+
+<h1>
+Furniture<br>
+<span>Beyond Luxury.</span>
+</h1>
+
+<p class="heroText">
+Transform your home with premium furniture designed
+for modern living. Discover elegant sofas, luxurious
+beds, stylish dining sets and sophisticated office furniture.
+</p>
+
+<div class="heroButtons">
+<a href="#products" class="btn btnPink">
+Explore Collection →
+</a>
+
+<a href="#contact" class="btn btnWhite">
+Visit Showroom
+</a>
+</div>
+
+</div>
+
+<div class="heroFurniture">
+<div class="sofa3d">
+<div class="cushion"></div>
+<div class="cushion cushion2"></div>
+</div>
+</div>
+
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+
+<div class="sectionHead reveal">
+<small>EXPLORE COLLECTION</small>
+<h2>Shop By Room</h2>
+<p>Beautiful furniture for every space.</p>
+</div>
+
+<div class="categories">
+
+<div class="category reveal" onclick="categoryFilter('Living Room')">
+<div class="categoryIcon">🛋️</div>
+<div class="categoryInfo">
+<h3>Living Room</h3>
+<p>Sofas • Tables • Chairs</p>
+</div>
+</div>
+
+<div class="category reveal" onclick="categoryFilter('Bedroom')">
+<div class="categoryIcon">🛏️</div>
+<div class="categoryInfo">
+<h3>Bedroom</h3>
+<p>Beds • Wardrobes • Tables</p>
+</div>
+</div>
+
+<div class="category reveal" onclick="categoryFilter('Dining')">
+<div class="categoryIcon">🍽️</div>
+<div class="categoryInfo">
+<h3>Dining</h3>
+<p>Dining Sets • Chairs</p>
+</div>
+</div>
+
+<div class="category reveal" onclick="categoryFilter('Office')">
+<div class="categoryIcon">💼</div>
+<div class="categoryInfo">
+<h3>Office</h3>
+<p>Desks • Chairs • Storage</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+
+<div class="sectionHead reveal">
+<small>OUR COLLECTION</small>
+<h2>Premium Furniture</h2>
+<p>Choose furniture that matches your personality.</p>
+</div>
+
+<div class="toolbar">
+
+<input
+id="search"
+class="searchBox"
+placeholder="🔍 Search furniture..."
+oninput="renderProducts()"
+>
+
+<div class="priceBox">
+₹5K
+<input
+type="range"
+id="priceRange"
+min="5000"
+max="150000"
+value="150000"
+step="5000"
+oninput="updatePrice()"
+>
+<span id="priceValue">₹1,50,000</span>
+</div>
+
+<div class="filters">
+
+<button class="filter active"
+onclick="setFilter('All',this)">
+All
+</button>
+
+<button class="filter"
+onclick="setFilter('Living Room',this)">
+Living
+</button>
+
+<button class="filter"
+onclick="setFilter('Bedroom',this)">
+Bedroom
+</button>
+
+<button class="filter"
+onclick="setFilter('Dining',this)">
+Dining
+</button>
+
+<button class="filter"
+onclick="setFilter('Office',this)">
+Office
+</button>
+
+</div>
+</div>
+
+<div class="products" id="productsGrid"></div>
+
+</section>
+
+<!-- OFFER -->
+<div class="offer reveal">
+
+<div class="badge" style="color:white;border-color:white">
+🔥 FESTIVE OFFER
+</div>
+
+<h2>Upgrade Your Home<br>With Premium Style.</h2>
+
+<p>
+Get special offers on selected furniture collections.
+Premium design, luxurious finish and comfortable living.
+</p>
+
+<a href="#products" class="btn btnWhite">
+Shop Offers →
+</a>
+
+<div class="offerCircle"></div>
+
+</div>
+
+<!-- FEATURES -->
+<section>
+
+<div class="sectionHead reveal">
+<small>WHY KRISHNA</small>
+<h2>Made For Modern Living</h2>
+</div>
+
+<div class="features">
+
+<div class="feature reveal">
+<div class="featureIcon">🪵</div>
+<h3>Premium Materials</h3>
+<p>Quality materials selected for comfort and durability.</p>
+</div>
+
+<div class="feature reveal">
+<div class="featureIcon">✨</div>
+<h3>Luxury Design</h3>
+<p>Elegant designs created to transform your interiors.</p>
+</div>
+
+<div class="feature reveal">
+<div class="featureIcon">🚚</div>
+<h3>Safe Delivery</h3>
+<p>Professional packaging and safe doorstep delivery.</p>
+</div>
+
+<div class="feature reveal">
+<div class="featureIcon">🛠️</div>
+<h3>Expert Crafting</h3>
+<p>Furniture crafted with attention to every detail.</p>
+</div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+
+<div class="about">
+
+<div class="aboutVisual reveal">
+<span>🪑</span>
+</div>
+
+<div class="aboutText reveal">
+
+<small style="color:var(--pink);letter-spacing:3px">
+OUR STORY
+</small>
+
+<h2>Furniture With Personality.</h2>
+
+<p>
+Krishna Premium Furniture combines modern aesthetics,
+comfortable designs and quality craftsmanship to create
+furniture that belongs in your dream home.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>10+</strong>
+<span>Years Experience</span>
+</div>
+
+<div class="stat">
+<strong>5000+</strong>
+<span>Happy Customers</span>
+</div>
+
+<div class="stat">
+<strong>100+</strong>
+<span>Premium Designs</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+
+<div class="sectionHead reveal">
+<small>GET IN TOUCH</small>
+<h2>Let's Build Your Dream Space.</h2>
+<p>Contact our furniture experts today.</p>
+</div>
+
+<div class="contact">
+
+<div class="contactBox reveal">
+
+<h3>Krishna Furniture Showroom</h3>
+
+<div class="contactItem">
+<span>📍</span>
+<div>
+<strong>Showroom</strong><br>
+Your Showroom Address,<br>
+Rajasthan, India
+</div>
+</div>
+
+<div class="contactItem">
+<span>📞</span>
+<div>
+<strong>Phone</strong><br>
++91 98765 43210
+</div>
+</div>
+
+<div class="contactItem">
+<span>✉️</span>
+<div>
+<strong>Email</strong><br>
+krishnafurniture@example.com
+</div>
+</div>
+
+<div class="contactItem">
+<span>🕐</span>
+<div>
+<strong>Opening Hours</strong><br>
+10:00 AM – 8:00 PM
+</div>
+</div>
+
+</div>
+
+<div class="formBox reveal">
+
+<h3>Send Enquiry</h3>
+
+<form onsubmit="sendEnquiry(event)">
+
+<div class="formGroup">
+<input id="customerName"
+required
+placeholder="Your Name">
+</div>
+
+<div class="formGroup">
+<input id="customerPhone"
+required
+placeholder="Mobile Number">
+</div>
+
+<div class="formGroup">
+<input id="customerEmail"
+type="email"
+placeholder="Email Address">
+</div>
+
+<div class="formGroup">
+<textarea id="customerMessage"
+required
+placeholder="Which furniture are you looking for?"></textarea>
+</div>
+
+<button class="btn btnPink">
+Send Enquiry →
+</button>
+
+</form>
+
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+<div class="footerGrid">
+
+<div>
+<div class="logo">KRISHNA</div>
+<p>
+Premium furniture for beautiful homes.
+Modern designs, premium quality and
+comfortable living.
+</p>
+</div>
+
+<div>
+<h3>Explore</h3>
+<a href="#home">Home</a><br>
+<a href="#products">Collection</a><br>
+<a href="#about">About</a>
+</div>
+
+<div>
+<h3>Categories</h3>
+<a href="#products">Living Room</a><br>
+<a href="#products">Bedroom</a><br>
+<a href="#products">Dining</a><br>
+<a href="#products">Office</a>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>+91 98765 43210</p>
+<p>Rajasthan, India</p>
+</div>
+
+</div>
+
+<div class="copyright">
+<span>© 2026 Krishna Premium Furniture</span>
+<span>Luxury • Comfort • Style</span>
+</div>
+
+</footer>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<!-- CART -->
+<div class="cartPanel" id="cartPanel">
+
+<div class="cartHeader">
+<h2>🛒 Your Cart</h2>
+<button class="close" onclick="closeCart()">×</button>
+</div>
+
+<div class="cartItems" id="cartItems"></div>
+
+<div class="cartFooter">
+
+<div class="total">
+<span>Total</span>
+<strong id="cartTotal">₹0</strong>
+</div>
+
+<button class="btn btnPink"
+style="width:100%"
+onclick="openCheckout()">
+💳 Proceed To Checkout
+</button>
+
+</div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal">
+
+<div class="modalBox">
+
+<button class="modalClose" onclick="closeModal()">×</button>
+
+<div class="modalGrid">
+
+<div class="modalVisual">
+<div id="modalFurniture"
+class="rotateFurniture">
+🛋️
+</div>
+</div>
+
+<div>
+
+<small style="color:var(--pink)">
+PREMIUM COLLECTION
+</small>
+
+<h2 id="modalTitle">Luxury Sofa</h2>
+
+<div id="modalStars" class="stars">
+★★★★★
+<span class="review">(128 reviews)</span>
+</div>
+
+<div id="modalPrice" class="modalPrice">
+₹49,999
+</div>
+
+<p id="modalDesc" class="modalDesc">
+Premium furniture designed for comfort,
+style and long-lasting quality.
+</p>
+
+<div class="colorTitle">
+SELECT FINISH
+</div>
+
+<div class="colors">
+
+<div class="color active"
+style="background:#ff4f9a"
+onclick="selectColor(this,'Pink')"></div>
+
+<div class="color"
+style="background:#fff"
+onclick="selectColor(this,'White')"></div>
+
+<div class="color"
+style="background:#6b4024"
+onclick="selectColor(this,'Wood')"></div>
+
+<div class="color"
+style="background:#222"
+onclick="selectColor(this,'Black')"></div>
+
+</div>
+
+<br>
+
+<button id="modalAdd"
+class="btn btnPink">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="checkout" id="checkout">
+
+<div class="checkoutBox">
+
+<button class="modalClose"
+onclick="closeCheckout()">×</button>
+
+<h2>💳 Secure Checkout</h2>
+
+<div class="checkoutGrid">
+
+<div>
+
+<h3>Delivery Information</h3>
+
+<br>
+
+<div class="formGroup">
+<input id="checkoutName"
+placeholder="Full Name"
+required>
+</div>
+
+<div class="formGroup">
+<input id="checkoutPhone"
+placeholder="Mobile Number"
+required>
+</div>
+
+<div class="formGroup">
+<input placeholder="House / Flat / Street">
+</div>
+
+<div class="formGroup">
+<input placeholder="City">
+</div>
+
+<div class="formGroup">
+<input placeholder="State">
+</div>
+
+<div class="formGroup">
+<input placeholder="PIN Code">
+</div>
+
+<h3>Payment Method</h3>
+
+<div class="payment">
+
+<label>
+<input type="radio" name="payment" checked>
+ Cash / UPI on Delivery
+</label>
+
+<label>
+<input type="radio" name="payment">
+ Online Payment
+</label>
+
+<label>
+<input type="radio" name="payment">
+ Credit / Debit Card
+</label>
+
+</div>
+
+<br>
+
+<button class="btn btnPink"
+style="width:100%"
+onclick="placeOrder()">
+🚚 Place Order
+</button>
+
+</div>
+
+<div class="checkoutSummary">
+
+<h3>📦 Order Summary</h3>
+
+<div id="checkoutSummary"></div>
+
+<hr style="margin:20px 0;border:0;border-top:1px solid #ffb3d1">
+
+<div class="total">
+<span>Total</span>
+<strong id="checkoutTotal">₹0</strong>
+</div>
+
+<p style="font-size:13px;color:#9b6b7d;line-height:1.7">
+🚚 Estimated delivery: 5–10 working days.
+<br>
+🔒 Your checkout information is handled securely.
+</p>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- WHATSAPP -->
+<a
+class="whatsapp"
+href="https://wa.me/919876543210?text=Hello%20Krishna%20Premium%20Furniture%2C%20I%20want%20to%20know%20about%20your%20furniture."
+target="_blank">
+💬
+</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* PRODUCTS */
+
+const products=[
+{
+id:1,
+name:"Royal Velvet Sofa",
+category:"Living Room",
+price:49999,
+old:59999,
+emoji:"🛋️",
+rating:4.9,
+reviews:128,
+tag:"BEST SELLER",
+desc:"Premium velvet sofa with elegant modern design and deep comfortable seating."
+},
+{
+id:2,
+name:"Luxury King Bed",
+category:"Bedroom",
+price:64999,
+old:79999,
+emoji:"🛏️",
+rating:4.8,
+reviews:96,
+tag:"NEW",
+desc:"Elegant king-size bed designed with premium finish and strong construction."
+},
+{
+id:3,
+name:"Royal Dining Set",
+category:"Dining",
+price:45999,
+old:54999,
+emoji:"🍽️",
+rating:4.7,
+reviews:74,
+tag:"OFFER",
+desc:"Premium dining table set perfect for family dinners and modern interiors."
+},
+{
+id:4,
+name:"Executive Office Chair",
+category:"Office",
+price:18999,
+old:24999,
+emoji:"💺",
+rating:4.8,
+reviews:85,
+tag:"POPULAR",
+desc:"Ergonomic executive chair designed for long working hours."
+},
+{
+id:5,
+name:"Premium Wardrobe",
+category:"Bedroom",
+price:38999,
+old:45999,
+emoji:"🚪",
+rating:4.6,
+reviews:62,
+tag:"SALE",
+desc:"Spacious premium wardrobe with elegant doors and modern storage design."
+},
+{
+id:6,
+name:"Modern Coffee Table",
+category:"Living Room",
+price:15999,
+old:19999,
+emoji:"🪵",
+rating:4.7,
+reviews:48,
+tag:"NEW",
+desc:"Contemporary coffee table with premium finish for stylish living rooms."
+},
+{
+id:7,
+name:"Designer Lounge Chair",
+category:"Living Room",
+price:22999,
+old:29999,
+emoji:"🪑",
+rating:4.9,
+reviews:91,
+tag:"TRENDING",
+desc:"Designer lounge chair combining luxury appearance with superior comfort."
+},
+{
+id:8,
+name:"Executive Office Desk",
+category:"Office",
+price:27999,
+old:34999,
+emoji:"🖥️",
+rating:4.8,
+reviews:55,
+tag:"POPULAR",
+desc:"Premium executive desk with modern workspace design and storage."
+},
+{
+id:9,
+name:"6-Seater Dining Table",
+category:"Dining",
+price:52999,
+old:64999,
+emoji:"🍽️",
+rating:4.8,
+reviews:68,
+tag:"PREMIUM",
+desc:"Large 6-seater dining table crafted for elegant family dining."
+},
+{
+id:10,
+name:"Designer Queen Bed",
+category:"Bedroom",
+price:54999,
+old:69999,
+emoji:"🛏️",
+rating:4.9,
+reviews:113,
+tag:"BEST SELLER",
+desc:"Modern queen-size bed with premium upholstery and luxury styling."
+},
+{
+id:11,
+name:"Storage Cabinet",
+category:"Office",
+price:19999,
+old:24999,
+emoji:"🗄️",
+rating:4.6,
+reviews:37,
+tag:"SALE",
+desc:"Modern storage cabinet for organized home and office spaces."
+},
+{
+id:12,
+name:"Luxury Recliner",
+category:"Living Room",
+price:32999,
+old:39999,
+emoji:"🛋️",
+rating:4.9,
+reviews:104,
+tag:"TOP RATED",
+desc:"Premium reclining chair designed for ultimate relaxation."
+}
+];
+
+let currentFilter="All";
+let cart=[];
+let wishlist=[];
+
+/* RENDER PRODUCTS */
+
+function renderProducts(){
+
+const grid=document.getElementById("productsGrid");
+
+const search=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+const maxPrice=
+Number(document.getElementById("priceRange").value);
+
+let filtered=products.filter(p=>{
+
+const matchCategory=
+currentFilter==="All" ||
+p.category===currentFilter;
+
+const matchSearch=
+p.name.toLowerCase().includes(search) ||
+p.category.toLowerCase().includes(search);
+
+const matchPrice=p.price<=maxPrice;
+
+return matchCategory && matchSearch && matchPrice;
+});
+
+grid.innerHTML="";
+
+if(filtered.length===0){
+grid.innerHTML=`
+<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--gray)">
+<h2>No furniture found</h2>
+<p>Try another search or price range.</p>
+</div>`;
+return;
+}
+
+filtered.forEach(p=>{
+
+const liked=wishlist.includes(p.id);
+
+grid.innerHTML+=`
+
+<div class="product reveal">
+
+<div class="productVisual">
+
+<span class="productTag">${p.tag}</span>
+
+<button
+class="wishlist ${liked?"liked":""}"
+onclick="toggleWishlist(${p.id})">
+${liked?"♥":"♡"}
+</button>
+
+<div class="furnitureEmoji">${p.emoji}</div>
+
+</div>
+
+<div class="productInfo">
+
+<small>${p.category}</small>
+
+<h3>${p.name}</h3>
+
+<div class="stars">
+★★★★★
+<span class="review">
+${p.rating} (${p.reviews} reviews)
+</span>
+</div>
+
+<div class="price">
+₹${format(p.price)}
+<del class="oldPrice">
+₹${format(p.old)}
+</del>
+</div>
+
+<div class="productButtons">
+
+<button class="addCart"
+onclick="addToCart(${p.id})">
+🛒 Add To Cart
+</button>
+
+<button class="details"
+onclick="openProduct(${p.id})">
+View
+</button>
+
+</div>
+
+</div>
+
+</div>
+`;
+});
+
+observeReveal();
+}
+
+/* FORMAT */
+
+function format(num){
+return num.toLocaleString("en-IN");
+}
+
+/* FILTER */
+
+function setFilter(filter,button){
+
+currentFilter=filter;
+
+document
+.querySelectorAll(".filter")
+.forEach(b=>b.classList.remove("active"));
+
+if(button)button.classList.add("active");
+
+renderProducts();
+
+document
+.getElementById("products")
+.scrollIntoView({behavior:"smooth"});
+}
+
+function categoryFilter(filter){
+
+currentFilter=filter;
+
+document
+.querySelectorAll(".filter")
+.forEach(b=>{
+b.classList.toggle(
+"active",
+b.innerText.toLowerCase().includes(
+filter.split(" ")[0].toLowerCase()
+)
+);
+});
+
+renderProducts();
+
+document
+.getElementById("products")
+.scrollIntoView({behavior:"smooth"});
+}
+
+/* PRICE */
+
+function updatePrice(){
+
+const value=
+document.getElementById("priceRange").value;
+
+document.getElementById("priceValue")
+.innerText="₹"+format(Number(value));
+
+renderProducts();
+}
+
+/* WISHLIST */
+
+function toggleWishlist(id){
+
+if(wishlist.includes(id)){
+wishlist=wishlist.filter(x=>x!==id);
+showToast("Removed from wishlist");
+}else{
+wishlist.push(id);
+showToast("❤️ Added to wishlist");
+}
+
+renderProducts();
+}
+
+/* CART */
+
+function addToCart(id){
+
+const existing=cart.find(x=>x.id===id);
+
+if(existing){
+existing.qty++;
+}else{
+cart.push({id:id,qty:1});
+}
+
+updateCart();
+
+const product=products.find(p=>p.id===id);
+
+showToast(product.name+" added to cart 🛒");
+}
+
+function updateCart(){
+
+document.getElementById("cartCount")
+.innerText=cart.reduce((sum,x)=>sum+x.qty,0);
+
+const container=
+document.getElementById("cartItems");
+
+if(cart.length===0){
+
+container.innerHTML=`
+<div style="text-align:center;padding:60px 10px;color:#999">
+<div style="font-size:55px">🛒</div>
+<h3>Your cart is empty</h3>
+<p>Add some premium furniture.</p>
+</div>`;
+
+document.getElementById("cartTotal")
+.innerText="₹0";
+
+return;
+}
+
+let total=0;
+
+container.innerHTML="";
+
+cart.forEach(item=>{
+
+const p=products.find(x=>x.id===item.id);
+
+total+=p.price*item.qty;
+
+container.innerHTML+=`
+
+<div class="cartItem">
+
+<div class="cartItemIcon">${p.emoji}</div>
+
+<div style="flex:1">
+
+<h4>${p.name}</h4>
+
+<strong style="color:#ff4f9a">
+₹${format(p.price)}
+</strong>
+
+<div class="qty">
+
+<button onclick="changeQty(${p.id},-1)">−</button>
+
+<span>${item.qty}</span>
+
+<button onclick="changeQty(${p.id},1)">+</button>
+
+<span
+class="remove"
+onclick="removeCart(${p.id})">
+Remove
+</span>
+
+</div>
+
+</div>
+
+</div>
+`;
+});
+
+document.getElementById("cartTotal")
+.innerText="₹"+format(total);
+}
+
+function changeQty(id,change){
+
+const item=cart.find(x=>x.id===id);
+
+if(!item)return;
+
+item.qty+=change;
+
+if(item.qty<=0){
+cart=cart.filter(x=>x.id!==id);
+}
+
+updateCart();
+}
+
+function removeCart(id){
+
+cart=cart.filter(x=>x.id!==id);
+
+updateCart();
+
+showToast("Item removed");
+}
+
+function openCart(){
+
+document
+.getElementById("cartPanel")
+.classList.add("open");
+
+document
+.getElementById("overlay")
+.classList.add("show");
+}
+
+function closeCart(){
+
+document
+.getElementById("cartPanel")
+.classList.remove("open");
+
+document
+.getElementById("overlay")
+.classList.remove("show");
+}
+
+/* PRODUCT DETAILS */
+
+function openProduct(id){
+
+const p=products.find(x=>x.id===id);
+
+document.getElementById("modalTitle")
+.innerText=p.name;
+
+document.getElementById("modalPrice")
+.innerText="₹"+format(p.price);
+
+document.getElementById("modalDesc")
+.innerText=p.desc;
+
+document.getElementById("modalFurniture")
+.innerText=p.emoji;
+
+document.getElementById("modalStars")
+.innerHTML=
+"★★★★★ <span class='review'>"+
+p.rating+" ("+p.reviews+" reviews)</span>";
+
+document.getElementById("modalAdd")
+onclick=function(){
+addToCart(p.id);
+closeModal();
+};
+
+document
+.getElementById("productModal")
+.classList.add("show");
+}
+
+function closeModal(){
+
+document
+.getElementById("productModal")
+.classList.remove("show");
+}
+
+/* COLOR SELECTOR */
+
+function selectColor(element,color){
+
+document
+.querySelectorAll(".color")
+.forEach(x=>x.classList.remove("active"));
+
+element.classList.add("active");
+
+showToast("Finish selected: "+color);
+}
+
+/* CHECKOUT */
+
+function openCheckout(){
+
+if(cart.length===0){
+showToast("Your cart is empty!");
+return;
+}
+
+closeCart();
+
+const summary=
+document.getElementById("checkoutSummary");
+
+let total=0;
+
+summary.innerHTML="";
+
+cart.forEach(item=>{
+
+const p=products.find(x=>x.id===item.id);
+
+total+=p.price*item.qty;
+
+summary.innerHTML+=`
+<div class="summaryItem">
+<span>${p.name} × ${item.qty}</span>
+<strong>₹${format(p.price*item.qty)}</strong>
+</div>
+`;
+});
+
+document.getElementById("checkoutTotal")
+.innerText="₹"+format(total);
+
+document
+.getElementById("checkout")
+.classList.add("show");
+}
+
+function closeCheckout(){
+
+document
+.getElementById("checkout")
+.classList.remove("show");
+}
+
+function placeOrder(){
+
+const name=document
+.getElementById("checkoutName").value;
+
+const phone=document
+.getElementById("checkoutPhone").value;
+
+if(!name || !phone){
+showToast("Please enter your name and mobile number");
+return;
+}
+
+showToast("🎉 Order placed successfully!");
+
+cart=[];
+
+updateCart();
+
+closeCheckout();
+}
+
+/* ENQUIRY */
+
+function sendEnquiry(e){
+
+e.preventDefault();
+
+const name=
+document.getElementById("customerName").value;
+
+const phone=
+document.getElementById("customerPhone").value;
+
+const message=
+document.getElementById("customerMessage").value;
+
+const whatsappMessage=
+"Hello Krishna Premium Furniture,%0A%0A"+
+"Name: "+encodeURIComponent(name)+
+"%0APhone: "+encodeURIComponent(phone)+
+"%0ARequirement: "+encodeURIComponent(message);
+
+window.open(
+"https://wa.me/919876543210?text="+whatsappMessage,
+"_blank"
+);
+
+showToast("Opening WhatsApp enquiry...");
+}
+
+/* THEME */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+const dark=
+document.body.classList.contains("dark");
+
+localStorage.setItem("krishnaTheme",dark?"dark":"light");
+}
+
+/* SEARCH */
+
+function focusSearch(){
+
+document
+.getElementById("products")
+.scrollIntoView({behavior:"smooth"});
+
+setTimeout(()=>{
+document.getElementById("search").focus();
+},500);
+}
+
+/* MOBILE */
+
+function toggleMobileMenu(){
+
+document
+.getElementById("mobileMenu")
+.classList.toggle("show");
+}
+
+/* TOAST */
+
+function showToast(message){
+
+const toast=
+document.getElementById("toast");
+
+toast.innerText=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},2500);
+}
+
+/* SCROLL REVEAL */
+
+function observeReveal(){
+
+const elements=
+document.querySelectorAll(".reveal");
+
+const observer=
+new IntersectionObserver(
+entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+},
+{threshold:.12}
+);
+
+elements.forEach(el=>observer.observe(el));
+}
+
+/* START */
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document
+.getElementById("loader")
+.style.opacity="0";
+
+setTimeout(()=>{
+document
+.getElementById("loader")
+.style.display="none";
+},800);
+
+},1200);
+
+if(localStorage.getItem("krishnaTheme")==="dark"){
+document.body.classList.add("dark");
+}
+
+renderProducts();
+updateCart();
+observeReveal();
+
+});
+
+/* ESC KEY */
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="Escape"){
+closeModal();
+closeCart();
+closeCheckout();
+}
+
+});
+
+</script>
+
+</body>
+</html>
